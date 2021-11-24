@@ -1,46 +1,42 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getEmployeesAllData } from '../../redux/employees/employeesOperations';
+import {
+  getEmployeesAll,
+  getEmployeesAllIsLoading,
+  getEmployeesAllError,
+  getEmployeesAllSorted,
+} from '../../redux/employees/employeesSelectors';
 
-const alphabetEnglish = [
-  'a',
-  'b',
-  'c',
-  'd',
-  'e',
-  'f',
-  'g',
-  'h',
-  'i',
-  'j',
-  'k',
-  'i',
-  'm',
-  'n',
-  'o',
-  'p',
-  'q',
-  'r',
-  's',
-  't',
-  'u',
-  'v',
-  'w',
-  'x',
-  'y',
-  'z',
-];
+import EmployeeCard from '../EmployeeCard/EmployeeCard';
 
 export default function EmployeesAllList() {
   const dispatch = useDispatch();
+
+  const employeesAllSorted = useSelector(getEmployeesAllSorted);
 
   useEffect(() => {
     dispatch(getEmployeesAllData());
   }, [dispatch]);
 
   return (
-    <ul>
-      <li></li>
-    </ul>
+    <>
+      <ul>
+        {employeesAllSorted.map(({ letter, employeesGroup }) => (
+          <li key={letter}>
+            <h2>{letter}</h2>
+            {employeesGroup.length > 0 ? (
+              <ul>
+                {employeesGroup.map((employeesItem) => (
+                  <EmployeeCard key={employeesItem.id} data={employeesItem} />
+                ))}
+              </ul>
+            ) : (
+              <p>No Employees</p>
+            )}
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }

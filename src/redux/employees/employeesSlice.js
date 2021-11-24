@@ -11,6 +11,18 @@ const initialState = {
 const employeesSlice = createSlice({
   name: 'employees',
   initialState,
+  reducers: {
+    addEmployeeActiveId: (state, { payload }) => {
+      if (!state.employeesActive.includes(payload))
+        state.employeesActive.push(payload);
+    },
+
+    removeEmployeeActiveId: (state, { payload }) => {
+      state.employeesActive = state.employeesActive.filter(
+        (item) => item !== payload
+      );
+    },
+  },
   extraReducers: {
     [getEmployeesAllData.pending](state) {
       state.employeesAllLoading = true;
@@ -27,5 +39,7 @@ const employeesSlice = createSlice({
     },
   },
 });
+export const { addEmployeeActiveId, removeEmployeeActiveId } =
+  employeesSlice.actions;
 
 export default employeesSlice.reducer;
