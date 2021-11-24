@@ -20,7 +20,8 @@ export default function EmployeesAllList() {
   }, [dispatch]);
 
   return (
-    <>
+    <div>
+      <h1>Employees</h1>
       <ul>
         {employeesAllSorted.map(({ letter, employeesGroup }) => (
           <li key={letter}>
@@ -37,6 +38,6 @@ export default function EmployeesAllList() {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }
