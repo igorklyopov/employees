@@ -51,10 +51,54 @@ const getEmployeesAllSorted = createSelector(
     }, [])
 );
 
+const months = () => [
+  'November',
+  'December',
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+];
+
+const getEmployeesActiveSorted = createSelector(
+  [getEmployeesAll, months, getEmployeesActive],
+  (employees, months, employeesActiveIds) =>
+    months.reduce((acc, month) => {
+      const result = { month, employeesGroup: [] };
+
+      employees.forEach((employeesItem) => {
+        const formattedBirthdayMonth = new Date(
+          employeesItem.dob
+        ).toLocaleString('en-US', { month: 'long' });
+
+        if (
+          employeesActiveIds.includes(employeesItem.id) &&
+          formattedBirthdayMonth.toLowerCase() === month.toLowerCase()
+        )
+          result.employeesGroup.push(employeesItem);
+
+        result.employeesGroup.sort((a, b) =>
+          a.lastName.localeCompare(b.lastName)
+        );
+      });
+
+      acc.push(result);
+
+      return acc;
+    }, [])
+);
+
 export {
   getEmployeesAll,
   getEmployeesAllIsLoading,
   getEmployeesAllError,
   getEmployeesActive,
   getEmployeesAllSorted,
+  getEmployeesActiveSorted,
 };

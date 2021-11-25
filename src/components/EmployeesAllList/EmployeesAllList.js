@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getEmployeesAllData } from '../../redux/employees/employeesOperations';
 import {
-  getEmployeesAll,
   getEmployeesAllIsLoading,
   getEmployeesAllError,
   getEmployeesAllSorted,
 } from '../../redux/employees/employeesSelectors';
 
+import styles from './EmployeesAllList.module.css';
 import EmployeeCard from '../EmployeeCard/EmployeeCard';
 
 export default function EmployeesAllList() {
@@ -20,14 +20,14 @@ export default function EmployeesAllList() {
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>Employees</h1>
-      <ul>
+    <div className={styles.employeesAllListWrap}>
+      <h1 className={styles.employeesAllListTitle}>Employees</h1>
+      <ul className={styles.employeesAllList}>
         {employeesAllSorted.map(({ letter, employeesGroup }) => (
-          <li key={letter}>
-            <h2>{letter}</h2>
+          <li key={letter} className={styles.employeesAllListItem}>
+            <h2 className={styles.letterTitle}>{letter}</h2>
             {employeesGroup.length > 0 ? (
-              <ul>
+              <ul className={styles.employeesGroupList}>
                 {employeesGroup.map((employeesItem) => (
                   <EmployeeCard key={employeesItem.id} data={employeesItem} />
                 ))}

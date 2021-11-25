@@ -1,6 +1,16 @@
+.employeeCard {
+  margin-bottom: 20px;
+}
+
 .employeeName {
+  margin-bottom: 10px;
 }
 
 .employeeName.active {
   color: blue;
+}
+
+.employeeStatusBtnLabel {
+  display: block;
+  margin-bottom: 5px;
 }

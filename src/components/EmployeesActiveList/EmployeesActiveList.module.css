@@ -1,0 +1,43 @@
+.employeesActiveListWrap {
+  width: 50%;
+  padding: 10px;
+}
+.employeesActiveListTitle {
+  margin-bottom: 30px;
+  font-size: 40px;
+  text-align: center;
+}
+
+.employeesActiveListTitle::after {
+  content: '';
+  display: block;
+  width: 70%;
+  height: 5px;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: cornflowerblue;
+  border-radius: 5px;
+}
+
+.employeesActiveList {
+  margin-left: 50px;
+  margin-bottom: 0;
+  padding-top: 30px;
+  border-left: 5px cornflowerblue solid;
+}
+
+.employeesActiveListItem {
+  margin-left: 50px;
+}
+
+.monthTitle {
+  display: block;
+  margin-left: 15px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.employeesGroupItem {
+  font-weight: 700;
+}

@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 import styles from './EmployeeCard.module.css';
 
 export default function EmployeeCard({ data }) {
-  const { id, firstName, lastName, dob } = data;
+  const { id, firstName, lastName } = data;
 
   const dispatch = useDispatch();
   const employeesActive = useSelector(getEmployeesActive);
@@ -36,12 +36,12 @@ export default function EmployeeCard({ data }) {
   if (employeeStatus === 'active') classNames.push(styles.active);
 
   return (
-    <li>
+    <li className={styles.employeeCard}>
       <h3 className={classNames.join(' ')}>
         {firstName} {lastName}
       </h3>
       <form>
-        <label>
+        <label className={styles.employeeStatusBtnLabel}>
           <input
             type="radio"
             checked={employeeStatus === 'active'}
@@ -51,7 +51,7 @@ export default function EmployeeCard({ data }) {
           />
           <span>active</span>
         </label>
-        <label>
+        <label className={styles.employeeStatusBtnLabel}>
           <input
             type="radio"
             checked={employeeStatus === 'notActive'}
